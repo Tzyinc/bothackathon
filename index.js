@@ -8,9 +8,15 @@ var config = require('./config');
 var preferenceController = require('./controllers/preferenceController');
 var preferenceRouter = require('./routes/preferenceRouter');
 
+const airconController = require('./controllers/airconController.js');
+const lightsController = require('./controllers/lightsController.js');
+const servoController = require('./controllers/servoController.js');
+const poller = require('./poller.js');
+
 var app = express();
 app.use(bodyParser.json());
 
+poller.startPoll();
 
 mongoose.connect(config.DB_CONNECTION_STRING, (err) => {
   if (err) {
