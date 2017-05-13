@@ -3,10 +3,12 @@ var cors = require('cors');
 var proxy = require('express-http-proxy');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var pug = require('ejs');
 
 var config = require('./config');
 var preferenceController = require('./controllers/preferenceController');
 var preferenceRouter = require('./routes/preferenceRouter');
+var state = require('./state');
 
 const airconController = require('./controllers/airconController.js');
 const lightsController = require('./controllers/lightsController.js');
@@ -14,7 +16,9 @@ const servoController = require('./controllers/servoController.js');
 const poller = require('./poller.js');
 
 var app = express();
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 poller.startPoll();
 
@@ -32,7 +36,7 @@ app.use('/messages', proxy('http://52.187.15.224:8082'));
 app.use(cors({origin: 'http://52.187.15.224:8082'}));
 */
 app.get('/', function (req, res) {
-  res.sendFile(__dirname +'/public/index.html');
+  res.render('pages/index', { preference: state.currentPreference });
 });
 app.use('/pref', preferenceRouter);
 
