@@ -44,28 +44,3 @@ app.use('/api',project_routes);
 app.listen(config.PORT_NUM, function () {
   console.log('Example app listening on port '+ config.PORT_NUM);
 });
-
-
-
-/*
-preferenceController.create({ name: "Hello" }, (err) => {
-  if (err)
-    console.log("FAILED");
-  else
-    console.log("DONE");
-});
-*/
-
-preferenceController.read({ name: "Hello" }, (err, pref) => {
-  if (err)
-    console.log("Failed to read");
-  else
-    console.log(pref);
-})
-
-preferenceController.read({ name: "Ho" }, (err, pref) => {
-  if (err)
-    console.log("Failed to read");
-  else
-    console.log(pref);
-})

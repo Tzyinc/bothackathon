@@ -9,8 +9,8 @@ Preference.remove({}, function(err) {
     console.log(err);
 });
 
-var pref = new Preference({ name: "Hello", luminosity: 80, temperature: 27 });
+var pref = new Preference({ name: "Alice", luminosity: 80, temperature: 27 });
 pref.save();
-pref = new Preference({ name: "World", luminosity: 60, temperature: 30 });
+pref = new Preference({ name: "Bob", luminosity: 60, temperature: 30 });
 pref.save();
 

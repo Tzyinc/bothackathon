@@ -1,0 +1,58 @@
+body {
+  background-image: url(landing-bg.jpg);
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  width: 80%;
+  text-align: center;
+  font-size: 28px;
+  color: white;
+  margin: auto;
+}
+
+.container .title {
+  padding-top: 20px;
+  font-size: 72px;
+  font-weight: bold;
+  margin-bottom: -20px;
+}
+
+.container .preferences {
+  font-size: 20px;
+  font-weight: lighter;
+  margin-top: -20px;
+}
+
+.container a {
+  color: white;
+  font-size: 20px;
+}
+
+.container .headers {
+  width: 40%;
+  float: left;
+  text-align: right;
+}
+
+.sliders {
+  width: 40%;
+  display: inline-block;
+  text-align: left;
+}
+
+#tempSlider .slider-selection {
+	background: whitesmoke;
+}
+
+#lumSlider .slider-selection {
+	background: whitesmoke;
+}
+
+.inputs {
+  padding-top: 40px;
+}
+
+.inputRow {
+  margin-bottom: 20px;
+}

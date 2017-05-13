@@ -2,23 +2,62 @@
 <html lang="en">
 <head>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <div class="container">
-    <div class="title">
+    <% if(preference) {%>
+      <div class="title">
+        <hr />
+        Hello, <%= preference.name %>!
+      </div>
       <hr />
-      Hello, <%= preference.name %>!
-    </div>
-    <hr />
-    <div class="preferences">
-      <span>Your Preferences:  </span>
-      <span>Temperature: <%= preference.temperature %> Degrees, Brightness: <%= preference.luminosity %> Millilux</span>
-    </div>
-    <br>
-    <div>
-      <a href="/">Not Comfortable?</a>
-  </div>
+      <div class="preferences">
+        <span>Your Preferences:  </span>
+        <span>Temperature: <%= preference.temperature %> Degrees, Brightness: <%= preference.luminosity %> Lux</span>
+      </div>
+      <br>
+      <div>
+        <a style="float:left" href="/pref">Adjust Preferences</a>
+        <a style="float:right" href="/pref/deactivate">Deactivate</a>
+      </div>
+    <% } else { %>
+      <div class="title">
+        Activate a preference.
+      </div>
+      <div class="inputRow">
+        <input id="input" type="text" style=
+          "height: 50px;
+          width: 70%;
+          font-size: 28pt;
+          font-family: 'Raleway', sans-serif;
+          color: black;
+          float:left"
+        />
+        <button id="submit" type="button" style="width:30%; height: 52px; float:right" class="btn-lg btn-primary active">Activate!</button>
+        <script>
+        $("#submit").click(function() {
+          var data = {
+            name: $("#input").val()
+          }
+          console.log(data);
+          $.ajax({
+            url: '/pref/user',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            complete: function(data, status) {
+              $(location).attr('href','/');
+            }
+          });
+          // $.post('/pref', JSON.stringify(data), null, 'json');
+        });
+      </script>
+      </div>
+    <% } %>
   </div>
 </body>
 </html>

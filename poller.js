@@ -38,11 +38,13 @@ function dataHandler(data) {
     var time = data.updatetime;
     console.log(time);
     var temperature = data.temperature;
-    var luminosity = data.millilux;
+    var luminosity = parseInt(data.millilux / 1000);
     var sensorData = { time: time, temperature: temperature, luminosity:luminosity };
+    /*
     sensorDataController.create(sensorData, (err) => {
         console.log("ERROR STORING SENSOR DATA");
     });
+    */
     state.sensorData = sensorData;
     console.log(state.sensorData);
 }

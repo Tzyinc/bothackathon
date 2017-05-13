@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="preferences.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">
+      Your Preferences
+    </div>
+    <span class="preferences">
+      The current temperature is <%= sensor.temperature %> degrees and luminosity is <%= sensor.luminosity %> lux.
+    </span>
+    <div class="inputs">
+      <div class = "inputRow">
+        <div class="headers">
+          <span>Temperature</span>
+        </div>
+        <div class="sliders">
+          <input 
+            id="tempSlider"
+            data-slider-id='tempDataSlider'
+            type="number" data-slider-min="0"
+            data-slider-max="40"
+            data-slider-step="1"
+            data-slider-value="20"
+          />
+          <script>
+            $('#tempSlider').slider({
+              formatter: function(value) {
+                return value + " Degrees";
+              }
+            });
+          </script>
+        </div>
+      </div>
+      <div class="inputRow">
+        <div class="headers">
+          <span>Luminosity</span>
+        </div>
+        <div class="sliders">
+          <input 
+            id="lumSlider" 
+            data-slider-id='lumDataSlider' 
+            type="number" 
+            data-slider-min="0" 
+            data-slider-max="100" 
+            data-slider-step="1" 
+            data-slider-value="50"
+          />
+          <script>
+            $('#lumSlider').slider({
+              formatter: function(value) {
+                return value + " Lux";
+              }
+            });
+          </script> 
+        </div>
+      </div>
+      <br />
+      <button id="submit" type="button" class="btn-lg btn-primary active">Update Preferences</button>
+      <script>
+        $("#submit").click(function() {
+          var data = {
+            temperature: $("#tempSlider").val(),
+            luminosity: $("#lumSlider").val()
+          }
+          console.log(data);
+          
+          $.ajax({
+            url: '/pref',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            complete: function(data, status) {
+              $(location).attr('href','/');
+            }
+          });
+          // $.post('/pref', JSON.stringify(data), null, 'json');
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>
