@@ -8,9 +8,8 @@ var config = require('./config');
 var preferenceController = require('./controllers/preferenceController');
 var preferenceRouter = require('./routes/preferenceRouter');
 
-const airconController = require('./controllers/airconController.js');
-const lightsController = require('./controllers/lightsController.js');
-const servoController = require('./controllers/servoController.js');
+var project_routes = require('./routes/apiRouter.js');
+
 const poller = require('./poller.js');
 
 var app = express();
@@ -36,6 +35,7 @@ app.get('/', function (req, res) {
 });
 app.use('/pref', preferenceRouter);
 
+app.use('/api',project_routes);
 
 app.listen(config.PORT_NUM, function () {
   console.log('Example app listening on port '+ config.PORT_NUM);
