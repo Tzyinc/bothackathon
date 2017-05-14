@@ -1,13 +1,25 @@
+const state = require('../state');
+
+const LIMIT = 200000;
 const getR = () => {
-    return 15;
+    if (state.sensorData && state.sensorData.luminosity < LIMIT) {
+        return 255;
+    }
+    return 150;
 }
 
 const getG = () => {
-    return 15;
+    if (state.sensorData && state.sensorData.luminosity < LIMIT) {
+        return 255;
+    }
+    return 150;
 }
 
 const getB = () => {
-    return 15;
+    if (state.sensorData && state.sensorData.luminosity < LIMIT) {
+        return 255;
+    }
+    return 0;
 }
 
 module.exports.getStatus = function(req, res) {
