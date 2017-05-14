@@ -1,8 +1,13 @@
+const state = require('../state');
+
 module.exports.getStatus = function(req, res) {
-    const uid = req.params.aircon_id;
-    const rand = Math.random();
-    // const content = uid == 1 ? 'OFF' : 'ON';
-    const content = 0.8 > rand ? 'OFF' : 'ON';
+    // const uid = req.params.aircon_id;
+
+    let content = 'ON';
+    if (state.sensorData && state.sensorData.temperature < state.currentPreference.temperature) {
+        console.log('exceed');
+        content = 'OFF';
+    }
     res.set("Connection", "close");
     res.send(content);
 }

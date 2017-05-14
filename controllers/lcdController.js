@@ -1,9 +1,18 @@
 const state = require('../state');
 
 module.exports.getStatus = function(req, res) {
-    const content = 'Hi,BITS_PLEASE  It\'s Sunny Today';
+    let name;
+    let weather = 'Sunny';
 
-    console.log(state);
+    if (state.currentPreference) {
+        name = state.currentPreference.name;
+    }
+    if (state.rain) {
+        weather = 'Rainy';
+    }
+    const fill = ' '.repeat(11 - name.length);
+    const content = `Hi, ${name}!${fill}It's ${weather} Today`;
+    console.log(content);
     const rand = parseInt('' + Math.random() * 255);
     const r = rand;
     const g = rand;
