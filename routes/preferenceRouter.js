@@ -77,5 +77,12 @@ router.get('/deactivate', function(req, res, next){
   res.redirect('/');
 });
 
+router.post('/rain', function(req, res, next) {
+  var opts = req.body;
+  state.rain = opts.rain;
+  console.log(state.rain);
+  res.sendStatus(200);
+});
+
 
 module.exports = router;
