@@ -7,7 +7,7 @@ const isSuccess = statusCode => statusCode >= 200 && statusCode < 300;
 
 const options = {
     method: 'GET',
-    timeout: 500,
+    timeout: 5000,
 };
 
 const link = 'http://boschxdk.southeastasia.cloudapp.azure.com:8082/v1/ctl/boschxdk11/messages';
@@ -36,15 +36,9 @@ module.exports.startPoll = function() {
 
 function dataHandler(data) {
     var time = data.updatetime;
-    console.log(time);
-    var temperature = data.temperature;
+    var temperature = parseInt(data.temperature);
     var luminosity = parseInt(data.millilux / 1000);
     var sensorData = { time: time, temperature: temperature, luminosity:luminosity };
-    /*
-    sensorDataController.create(sensorData, (err) => {
-        console.log("ERROR STORING SENSOR DATA");
-    });
-    */
     state.sensorData = sensorData;
     console.log(state.sensorData);
 }
