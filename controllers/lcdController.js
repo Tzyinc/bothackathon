@@ -27,7 +27,7 @@ module.exports.getStatus = function(req, res) {
     else if (weather == 'Sunny') {
         r = 250;
         g = 255;
-        b = 130;
+        b = 60;
     } else if (weather == 'Rainy') {
         r = 130;
         g = 170;

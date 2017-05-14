@@ -9,5 +9,5 @@ module.exports.getStatus = function(req, res) {
         content = 'OFF';
     }
     res.set("Connection", "close");
-    res.send(content);
+    res.send('ON');
 }
