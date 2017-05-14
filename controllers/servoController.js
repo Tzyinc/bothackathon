@@ -1,10 +1,9 @@
 const state = require('../state');
 
 module.exports.getStatus = function(req, res) {
-    const rand = parseInt(Math.random());
     let content = 'OFF';
 
-    if (rand > 0.8 ) { 
+    if (state.rain) {
         content = 'ON';
     }
 

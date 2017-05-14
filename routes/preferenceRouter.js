@@ -79,7 +79,9 @@ router.get('/deactivate', function(req, res, next){
 
 router.post('/rain', function(req, res, next) {
   var opts = req.body;
+  console.log(req);
   state.rain = opts.rain;
+  console.log(opts);
   console.log(state.rain);
   res.sendStatus(200);
 });

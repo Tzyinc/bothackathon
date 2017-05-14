@@ -4,5 +4,5 @@ module.exports = {
   //sensorData: { temperature: 50, luminosity: 40 }
   currentPreference: null,
   sensorData: { temperature: 50, luminosity: 40 },
-  raining: false,
+  rain: false,
 }

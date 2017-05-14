@@ -31,7 +31,7 @@ const getBoschData = function() {
 
 module.exports.startPoll = function() {
     getBoschData();
-    setInterval(getBoschData, 10000);
+    setInterval(getBoschData, 5000);
 }
 
 function dataHandler(data) {

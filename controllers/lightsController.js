@@ -2,7 +2,7 @@ const state = require('../state');
 
 const LIMIT = 200;
 const getLight = () => {
-    if (state.sensorData && state.sensorData.luminosity < state.currentPreference.luminosity) {
+    if (state.currentPreference && state.sensorData && state.sensorData.luminosity < state.currentPreference.luminosity) {
         console.log('exceed');
         return 255;
     }
